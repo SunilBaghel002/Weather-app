@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+}
+body{
+    background-color: #96bdc6;
+}
+.container{
+    background-color: rgb(216, 198, 198);
+    max-width: 600px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.6);
+    margin: 40px auto;
+    border-radius: 5px;
+}
+form{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    align-items: center;
+}
+form input[type="text"]{
+    padding: 10px;
+    font-size: 18px;
+    width: 70%;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+form input[type="submit"]{
+    padding: 10px 20px;
+    border: none;
+    background-color: #c0645a;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+form input[type="submit"]:hover{
+    background-color: rgb(171, 75, 75);
+}
+h2{
+    display: flex;
+    width: fit-content;
+    margin: 10px auto;
+    gap: 4px;
+}
+.city-name2{
+    color: rgb(70, 70, 202);
+}
+.country-name{
+    color: rgb(80, 185, 150);
+}
+.icon img{
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.temp{
+    font-size: 40px;
+    font-weight: 1000;
+    margin-top: 10px;
+}
+.desc{
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.details>div{
+    font-size: 18px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 10px;
+    min-height: 40px;
+    text-align: center;
+    align-items: center;
+    flex: 1;
+}
