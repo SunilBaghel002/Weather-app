@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Space+Grotesk:wght@300..700&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: cursive;
+    font-family: "Open Sans", serif;
 }
 body{
     background-color: #96bdc6;
@@ -43,6 +44,16 @@ form input[type="submit"]{
 form input[type="submit"]:hover{
     background-color: rgb(171, 75, 75);
 }
+.error{
+    color: red;
+    text-align: start;
+    font-size: 13px;
+    margin-top: 3px;
+    display: none;
+}
+.error::placeholder{
+    color: white;
+}
 h2{
     display: flex;
     width: fit-content;
@@ -65,7 +76,7 @@ h2{
 .temp{
     font-size: 40px;
     font-weight: 1000;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 .desc{
     font-size: 30px;
@@ -74,10 +85,8 @@ h2{
     margin-bottom: 20px;
 }
 .details{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
 }
 .details>div{
     font-size: 18px;
@@ -89,4 +98,21 @@ h2{
     text-align: center;
     align-items: center;
     flex: 1;
+}
+.red{
+    color: white;
+    background-color: red;
+}
+@media (max-width: 600px){
+    body{
+        padding: 20px;
+    }
+    .details{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media (max-width: 420px){
+    .details{
+        grid-template-columns: 1fr;
+    }
 }
