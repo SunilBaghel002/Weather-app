@@ -3,8 +3,7 @@ const weatherDataElement = document.querySelector(".weather-data")
 const cityNameElement = document.querySelector("#city-name")
 const formElement = document.querySelector("form")
 const imgIcon = document.querySelector(".icon")
-const errorElement=document.querySelector(".error")
-
+const errorElement = document.querySelector(".error")
 
 formElement.addEventListener("submit", (e) => {
     e.preventDefault()
@@ -12,34 +11,43 @@ formElement.addEventListener("submit", (e) => {
 
     getWeatherData(cityValue)
 })
-formElement.addEventListener("keypress", function(enter){
+formElement.addEventListener("keypress", function (enter) {
     e.preventDefault()
     const cityValue = cityNameElement.value
 
     getWeatherData(cityValue)
 })
+async function getCountryData(code) {
+    const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
+    const data = await response.json();
+    console.log(data)
+    return {
+        name: data[0]?.name.common || code,
+        flag: data[0]?.flags?.svg || ""
+    };
+}
 
 async function getWeatherData(cityValue) {
     try {
 
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${apiKey}&units=metric`)
         if (!response.ok) {
-            errorElement.style.display="block"
+            errorElement.style.display = "block"
             cityNameElement.classList.add("red")
             throw new Error("Network response is not ok!")
         }
-        else{
-            errorElement.style.display="none"
+        else {
+            errorElement.style.display = "none"
             cityNameElement.classList.remove("red")
         }
-        const data= await response.json()
+        const data = await response.json()
         console.log(data)
-        const temperature=Math.floor(data.main.temp)
-        const description=data.weather[0].description
-        const icon=data.weather[0].icon
-        const name=data.name
+        const temperature = Math.floor(data.main.temp)
+        const description = data.weather[0].description
+        const icon = data.weather[0].icon
+        const name = data.name
         console.log(name)
-        const country=data.sys.country
+        const country = data.sys.country
 
         const latitude = data.coord.lat;
         const longitude = data.coord.lon;
@@ -57,7 +65,12 @@ async function getWeatherData(cityValue) {
         const timezoneOffset = data.timezone / 3600;
         const timezone = `UTC ${timezoneOffset >= 0 ? '+' : ''}${timezoneOffset}`;
 
-        const details=[
+        const countryCode = data.sys.country;
+        const countryData = await getCountryData(countryCode);
+        weatherDataElement.querySelector(".country-name").textContent=`${countryData.name}`
+        document.querySelector(".flag").innerHTML = `<img src="${countryData.flag}" alt="Flag of ${countryData.name}">`;
+
+        const details = [
             `Feels Like: ${Math.floor(data.main.feels_like)}°C`,
             `Humidity: ${data.main.humidity}%`,
             `Wind speed: ${data.wind.speed} m/s`,
@@ -70,20 +83,20 @@ async function getWeatherData(cityValue) {
             `Timezone: ${timezone}`
         ]
 
-        weatherDataElement.querySelector(".city-name2").textContent=`${name}`
-        weatherDataElement.querySelector(".country-name").textContent=`${country}`
-        weatherDataElement.querySelector(".temp").textContent=`${temperature}°C`
-        weatherDataElement.querySelector(".desc").textContent=`${description}`
+        weatherDataElement.querySelector(".city-name2").textContent = `${name}`
+        // weatherDataElement.querySelector(".country-name").textContent=`${country}`
+        weatherDataElement.querySelector(".temp").textContent = `${temperature}°C`
+        weatherDataElement.querySelector(".desc").textContent = `${description}`
 
-        imgIcon.innerHTML=`<img src="https://openweathermap.org/img/wn/${icon}.png" alt="">`
+        imgIcon.innerHTML = `<img src="https://openweathermap.org/img/wn/${icon}.png" alt="">`
 
-        weatherDataElement.querySelector(".details").innerHTML=details.map((detail)=>{
+        weatherDataElement.querySelector(".details").innerHTML = details.map((detail) => {
             return `<div>${detail}</div>`
         }).join("")
-    }catch(err){
-        weatherDataElement.querySelector(".temp").textContent=""
-        imgIcon.innerHTML=""
-        weatherDataElement.querySelector(".desc").textContent=""
+    } catch (err) {
+        weatherDataElement.querySelector(".temp").textContent = ""
+        imgIcon.innerHTML = ""
+        weatherDataElement.querySelector(".desc").textContent = ""
     }
 
 }

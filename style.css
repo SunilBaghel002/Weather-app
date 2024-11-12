@@ -57,6 +57,9 @@ form input[type="submit"]:hover{
 h2{
     display: flex;
     width: fit-content;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
     margin: 10px auto;
     gap: 4px;
 }
@@ -102,6 +105,10 @@ h2{
 .red{
     color: white;
     background-color: red;
+}
+.flag img{
+    width: 40px;
+    margin-left: 5px;
 }
 @media (max-width: 600px){
     body{
