@@ -7,6 +7,11 @@
 }
 body{
     background-color: #96bdc6;
+    width: 100%;
+    height: 100vh;
+    background-image: url(https://img.freepik.com/free-vector/gorgeous-clouds-background-with-blue-sky-design_1017-25501.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .container{
     background-color: rgb(216, 198, 198);
@@ -16,6 +21,8 @@ body{
     box-shadow: 10px 10px 20px rgba(0,0,0,0.6);
     margin: 40px auto;
     border-radius: 5px;
+    position: relative;
+    z-index: 1;
 }
 form{
     display: flex;
@@ -65,10 +72,14 @@ h2{
 }
 .city-name2{
     color: rgb(70, 70, 202);
+    text-transform: uppercase;
 }
 .country-name{
     color: rgb(80, 185, 150);
+    text-transform: uppercase;
+    cursor: pointer;
 }
+
 .icon img{
     width: 100px;
     height: 100px;
@@ -89,14 +100,30 @@ h2{
 }
 .details{
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(2,1fr);
 }
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    gap: 5px;
+}
+
+.detail-item .icon {
+    font-size: 1.5rem;
+}
+
+.detail-item .text {
+    font-size: 1rem;
+}
+
 .details>div{
     font-size: 18px;
     background-color: white;
     padding: 20px;
     border-radius: 5px;
-    margin: 10px;
+    margin: 8px;
     min-height: 40px;
     text-align: center;
     align-items: center;
@@ -110,12 +137,135 @@ h2{
     width: 40px;
     margin-left: 5px;
 }
+.information{
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    display: flex;
+    padding: 15px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+.hidden{
+    display: none;
+}
+.default-theme {
+    background: linear-gradient(to bottom, #87CEFA, #fff);
+    transition: background 0.5s ease-in-out;
+}
+
+.winter {
+    background: linear-gradient(to bottom, #A3D0FF, #E0F7FA);
+    color: #1E3A8A;
+}
+
+.spring {
+    background: linear-gradient(to bottom, #CFF6CF, #E8FFE8);
+    color: #0C5C0C;
+}
+
+.summer {
+    background: linear-gradient(to bottom, #FFD700, #FFA500);
+    color: #8B4513;
+}
+
+.autumn {
+    background: linear-gradient(to bottom, #FFB347, #FF7F50);
+    color: #4B2504;
+}
+
+.rainy {
+    background: linear-gradient(to bottom, #616161, #9E9E9E);
+    color: #37474F;
+}
+
+.cloudy {
+    background: linear-gradient(to bottom, #D3D3D3, #B0C4DE);
+    color: #4B4B4B;
+}
+
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    visibility: hidden; 
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.loader {
+    display: flex;
+    gap: 15px;
+}
+
+.loader .circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    animation: bounce 1.2s infinite;
+}
+
+.loader .circle:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loader .circle:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.loader .circle:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+.loader-wrapper.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+@keyframes ino{
+    from{
+        transform: scale(0.8);
+    }
+    to{
+        transform: scale(1);
+    }
+}
 @media (max-width: 600px){
     body{
         padding: 20px;
+        height: fit-content;
     }
     .details{
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(1,1fr);
+    }
+    h2{
+        font-size: calc(1rem + 0.75vw);
+    }
+    .country-element{
+        font-size: calc(1rem + 0.75vw);
     }
 }
 @media (max-width: 420px){

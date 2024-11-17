@@ -10,6 +10,14 @@
 </head>
 
 <body>
+    <div class="loader-wrapper" id="loader">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </div>    
     <div class="container">
         <h1>Weather App</h1>
         <form action="#">
@@ -20,7 +28,7 @@
         <div class="weather-data">
             <h2>City Name: <p class="city-name2"></p>
             </h2>
-            <h2>Country: <p class="country-name"></p><span class="flag"></span>
+            <h2 class="country-element">Country: <p class="country-name"></p><span class="flag"></span>
             </h2>
             <div class="icon"></div>
             <div class="temp"></div>
@@ -38,6 +46,7 @@
                 <div></div>
             </div>
         </div>
+        <div class="information hidden"></div>
     </div>
     <script src="script.js"></script>
 </body>
